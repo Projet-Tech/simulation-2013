@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="50"
+				contentBackgroundAlpha="0">
+	<fx:Declarations>
+		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+	</fx:Declarations>
+	
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="hovered" />
+		<s:State name="selected" />
+	</s:states>		
+	
+	
+
+	
+	<s:HGroup left="5" right="5" top="3" bottom="3" gap="3" width="100%">
+		<s:Group width="100%" height="100%">
+			<s:Rect left="0" right="0" top="0" bottom="0" width="100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="0xFFFFFF" 
+								  alpha="0.1" alpha.hovered=".2" alpha.selected=".3"/>
+				</s:fill>
+			</s:Rect>
+			<s:HGroup left="2" right="2" top="2" bottom="2" verticalAlign="middle" width="100%">
+				<s:Label id="paramLabel" text="{data.@type}" top="5" bottom="5" left="5" right="5"  width="100%"/>
+			</s:HGroup>
+			
+		</s:Group>
+	</s:HGroup>
+	
+</s:ItemRenderer>

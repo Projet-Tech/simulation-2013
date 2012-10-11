@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"		 
+		height.ouvert = "200" height.ferme = "40"
+		 currentState="ferme"
+		 styleName="timelinePanel">
+	<fx:Declarations>
+		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+	</fx:Declarations>
+	
+	
+	<fx:Script> 
+		<![CDATA[
+			protected function panelOpener_clickHandler(event:MouseEvent):void
+			{
+				currentState = (currentState == "ouvert") ? "ferme" : "ouvert";
+			}
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="ouvert"/>
+		<s:State name="ferme"/>
+	</s:states>
+	
+	<s:transitions>
+		<s:Transition fromState="*" toState="*">
+			<s:Parallel>
+				<s:Resize targets="{[panelComponents,this]}">
+					<s:easer>
+						<s:Power />
+					</s:easer>
+				</s:Resize>
+				<s:Fade target="{panelComponents}" />
+			</s:Parallel>
+			
+		</s:Transition>
+	</s:transitions>
+	
+	
+	
+	<s:Rect width="100%" height="100%" alpha="1"> 
+		<s:fill>
+			<s:LinearGradient rotation="45">
+				<s:entries>
+					<s:GradientEntry color="{getStyle('chromeColor')}" alpha="0.3"/>
+					<s:GradientEntry color="{getStyle('chromeColor')}" alpha="0.5"/>
+				</s:entries>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	
+	
+	
+	<s:VGroup width="100%" height="100%" gap="0">
+		
+		<s:Group id="panelOpenerGroup" width="100%" height="40" click="panelOpener_clickHandler(event)">
+			<s:Rect left="0" right="0" top="0" bottom="0" alpha="1"> 
+				<s:fill>
+					<s:LinearGradient rotation="270">
+						<s:entries>
+							<s:GradientEntry color="{getStyle('chromeColor')}" alpha="0.9"/>
+							<s:GradientEntry color="{getStyle('chromeColor')}" alpha="1"/>
+						</s:entries>
+					</s:LinearGradient>
+				</s:fill>
+			</s:Rect>
+			<s:VGroup id="rotLabelGroup" width="100%" height="100%" 
+					  rotation="0" verticalAlign="middle" horizontalAlign="center">
+				<s:Label text="TimeLine"/>
+			</s:VGroup>
+		</s:Group>
+		
+		<s:Group id="panelComponents" width="100%" height.ouvert="100%" height.ferme="0" visible.ouvert="true" visible.ferme="false">
+			
+		</s:Group>
+		
+
+	</s:VGroup>
+	
+	
+</s:Group>

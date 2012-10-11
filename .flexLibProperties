@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="org.projetandtech.sim.ui.ParametersPanel"/>
+    <classEntry path="org.projetandtech.sim.ui.LogPanel"/>
+    <classEntry path="org.projetandtech.sim.ui.ParcoursPanel"/>
+    <classEntry path="org.projetandtech.sim.ui.TimeLinePanel"/>
+    <classEntry path="org.projetandtech.sim.ui.ParcoursPanelComponents.BotParamItemRenderer"/>
+    <classEntry path="org.projetandtech.sim.ui.ParcoursPanelComponents.ParcoursPanelListItemRenderer"/>
+    <classEntry path="org.projetandtech.sim.ui.ParcoursPanelComponents.ParcoursPanelList"/>
+    <classEntry path="org.projetandtech.sim.core.Parametres"/>
+    <classEntry path="org.projetandtech.sim.core.SocketCommunication"/>
+    <classEntry path="org.projetandtech.sim.core.ICommunication"/>
+    <classEntry path="org.projetandtech.sim.core.Robot"/>
+    <classEntry path="org.projetandtech.sim.core.VelocityParams"/>
+    <classEntry path="org.projetandtech.sim.core.Forme"/>
+    <classEntry path="org.projetandtech.sim.core.Obstacle"/>
+    <classEntry path="org.projetandtech.sim.core.Map"/>
+    <classEntry path="org.projetandtech.sim.core.PointOrriente"/>
+    <classEntry path="org.projetandtech.sim.core.MoteurPrincipal"/>
+    <classEntry path="org.projetandtech.sim.core.MoteurMode"/>
+    <classEntry path="org.projetandtech.sim.core.parcours.Parcours"/>
+    <classEntry path="org.projetandtech.sim.core.parcours.MapPoint"/>
+    <classEntry path="org.projetandtech.sim.core.parcours.PointPassage"/>
+    <classEntry path="org.projetandtech.sim.core.parcours.PointAction"/>
+    <classEntry path="org.projetandtech.sim.core.Action"/>
+    <classEntry path="org.projetandtech.sim.core.ActionZone"/>
+    <classEntry path="org.projetandtech.sim.core.parcours.ParcoursAction"/>
+    <classEntry path="org.projetandtech.sim.core.parcours.ParcoursActionGoTo"/>
+    <classEntry path="org.projetandtech.sim.core.parcours.ParcoursActionRotate"/>
+    <classEntry path="org.projetandtech.sim.core.parcours.ParcoursActionWait"/>
+    <classEntry path="org.projetandtech.sim.ui.MainPanel"/>
+    <classEntry path="org.projetandtech.sim.ui.MapGUI"/>
+    <classEntry path="org.projetandtech.sim.core.XMLSerialLoader"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

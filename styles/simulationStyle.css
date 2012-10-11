@@ -1,0 +1,99 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace ParcoursPanelComponents "ParcoursPanelComponents.*";
+@namespace ParcoursPanelComponents1 "org.projetandtech.sim.ui.ParcoursPanelComponents.*";
+
+@font-face{
+	src: url("C:\\Windows\\Fonts\\framd.ttf");
+	fontFamily: gothicCentury;
+}
+@font-face{
+	src: url("C:\\Windows\\Fonts\\framd.TTF");
+	fontFamily: gothicCentury;
+	fontWeight: bold;
+}
+
+global
+{
+	fontFamily: gothicCentury;
+	color: #FFFFFF;
+}
+
+s|Label
+{
+	fontSize: 20; 
+	color: #FFFFFF;
+}
+s|TextArea
+{
+	
+	fontSize: 15; 
+	contentBackgroundAlpha:0.1;
+	skinClass:ClassReference("spark.skins.spark.TextAreaSkin")
+}
+s|Label.title
+{
+	fontSize: 50;
+	textAlpha: .5;
+	color: #FFFFFF;
+	fontFamily: gothicCentury;
+	fontWeight: bold;
+}
+
+s|TextInput
+{
+	top:1;
+	
+	fontSize:20;
+	contentBackgroundAlpha:0.1;
+	color: #FFFFFF;
+	skinClass:ClassReference("spark.skins.spark.TextInputSkin")
+}
+
+.parametresPanel
+{
+	chromeColor: #0000FF;
+	
+}
+
+.logPanel
+{
+	chromeColor: #FF0000;
+}
+.parcoursPanel
+{
+	chromeColor: #951B81;
+}
+
+.timelinePanel
+{
+	chromeColor: #00680E;
+}
+
+s|Button
+{
+	fontWeight: normal;
+	color: #FFFFFF;
+}
+
+
+s|List
+{
+	contentBackground-color: #000000;
+	contentBackgroundAlpha: 0;
+	borderVisible: false;
+	
+	textAlign: left;
+}
+
+ParcoursPanelComponents1|ParcoursPanelListItemRenderer
+{
+	contentBackground-color: #000000;
+	contentBackgroundAlpha: 0;
+	borderVisible: false;
+	
+	textAlign: left;
+	
+	
+}
