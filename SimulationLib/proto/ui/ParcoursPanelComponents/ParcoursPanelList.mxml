@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:List xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300"
+		 contentBackgroundAlpha="0" horizontalScrollPolicy="off"
+		 itemRendererFunction="itemRendererSelector">
+	<fx:Declarations>
+		<fx:XMLList id="params" xmlns="">
+			<obj type="posX" value="12.3"/> 
+			<aaz type="PosY" value="15.2"/> 
+		</fx:XMLList>
+	</fx:Declarations>
+	
+	<s:XMLListCollection source="{params}"/>
+	<fx:Script>
+		<![CDATA[
+			public function itemRendererSelector(item:*):IFactory {
+				trace(item.@type);
+				if (item.@type) {
+					return new ClassFactory(ParcoursPanelListItemRenderer);
+				} else {
+					return new ClassFactory(ParcoursPanelListItemRenderer);
+				}
+			}
+		]]>
+	</fx:Script>
+	
+</s:List>

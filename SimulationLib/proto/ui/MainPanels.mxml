@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="400" 
+		 height="300" xmlns:local="*" xmlns:ui="org.projetandtech.sim.ui.*"
+		 >
+
+	<fx:Declarations>
+		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+	</fx:Declarations>
+	<s:Rect  width="100%" height="100%">
+		<s:fill>
+			<s:LinearGradient rotation="60">
+				
+				<s:entries>
+					<s:GradientEntry color="0x000000" ratio="0.00" alpha="1"/>
+					<s:GradientEntry color="0x000066" ratio="1" alpha="1"/>
+				</s:entries>
+				
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+		
+		<s:HGroup width="100%" height="100%" gap="10">
+			
+			<s:VGroup width="100%" height="100%" gap="10" >
+				<ui:LogPanel width="100%" />
+				<s:HGroup width="100%" height="100%">
+					<ui:ParcoursPanel height="100%"/>
+					<s:VGroup width="100%" height="100%" gap="0">
+						<ui:GamePanel width="100%" height="100%" />
+						<ui:TimeLinePanel width="100%"/>
+					</s:VGroup>
+				</s:HGroup>
+				
+			</s:VGroup>
+			
+			<ui:ParametersPanel height="100%" >
+			</ui:ParametersPanel>
+		</s:HGroup>
+</s:Group>
