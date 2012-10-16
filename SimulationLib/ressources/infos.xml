@@ -1,8 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<MapDatas version="0.1">
-	<Map source="assets/Aire_de_jeu_0">
-		<PointPassage x="10" y="20"/>	
-	</Map>
+<MapDatas file_version="0.1">
+	<map image="assets/Aire_de_jeu_0" dimesionX="2000" dimensionY="3000">
+	
+	
+		<elements>
+			<element type="chou" id="1101">
+				<position x="120" y="2200" />
+				<etatInitial value="PAS_CEUILLI" />
+			</element>
+			<element type="chou" id="1102">
+				<position x="120" y="1200" />
+				<etatInitial value="PAS_CEUILLI" />
+			</element>
+		</elements>
+
+
+		<PointsPassage>
+			<PointPassage x="10" y="20" />
+			<PointPassage x="800" y="20" />
+			<PointPassage x="1300" y="20" />
+		</PointsPassage>
+
+
+		<PointsAction>
+			<PointAction id="5000" x="120" y="2000" o="2.364536"
+				actionName="prendreSalade">
+				<elements>
+					<element ref="1101" />
+					<element ref="1102" />
+				</elements>
+				<fonction>
+					<action ref="ceuillirChou">
+						<reussi>
+							<changerTousEtats nouvelEtat="CEUILLI" />
+						</reussi>
+						<echec>
+							<changerTousEtats nouvelEtat="INCONU" />
+						</echec>
+					</action>
+
+					<condition type="etat" sourceRef="1101" param="NON_CEUILLI">
+						<!-- Chais pas, on fait un truc -->
+					</condition>
+				</fonction>
+			</PointAction>
+		</PointsAction>
+
+
+		<zonesAction>
+
+			<zoneAction actionID="3">
+				<diffDefaut value="-0.1" />
+				<elements>
+					<element ref="1101" diff="-0.1" />
+					<element ref="1102" diff="+0.1" />
+				</elements>
+				<forme x="21" y="123">
+					<rectangle width="12" height="123" />
+				</forme>
+			</zoneAction>
+		</zonesAction>
+
+
+		<obstacles>
+			<obstacle>
+				<dureeIni>15</dureeIni>
+				<forme x="21" y="123">
+					<rond rayon="12" />
+				</forme>
+			</obstacle>
+
+		</obstacles>
+	</map>
+	
+	
+	<robots>
+		<robotAlieePrincipal>
+			<positionIni x="120" y="11" o="1.1415" />
+			<forme>
+				<rond rayon="12" />
+			</forme>
+			<parametres>
+				<velocite>
+					<tempsDemarage>0.2</tempsDemarage>
+					<tempsArret>0.3</tempsArret>
+					<vitesseCourse>13</vitesseCourse>
+					<vitesseRotation>3.14</vitesseRotation>
+				</velocite>
+
+			</parametres>
+		</robotAlieePrincipal>
+		
+		<robotAlieeSecondaire>
+			<positionIni x="120" y="11" o="1.1415" />
+			<forme>
+				<rond rayon="12" />
+			</forme>
+			<parametres>
+				<velocite>
+					<tempsDemarage>0.2</tempsDemarage>
+					<tempsArret>0.3</tempsArret>
+					<vitesseCourse>13</vitesseCourse>
+					<vitesseRotation>3.14</vitesseRotation>
+				</velocite>
+
+			</parametres>
+		</robotAlieeSecondaire>
+		
+		<robotEnemiePrincipal>
+			<positionIni x="120" y="11" o="1.1415" />
+			<forme>
+				<rond rayon="12" />
+			</forme>
+			<parametres>
+				<velocite>
+					<tempsDemarage>0.2</tempsDemarage>
+					<tempsArret>0.3</tempsArret>
+					<vitesseCourse>13</vitesseCourse>
+					<vitesseRotation>3.14</vitesseRotation>
+				</velocite>
+
+			</parametres>
+		</robotEnemiePrincipal>
+		
+		<robotEnemieSecondaire>
+			<positionIni x="120" y="11" o="1.1415" />
+			<forme>
+				<rond rayon="12" />
+			</forme>
+			<parametres>
+				<velocite>
+					<tempsDemarage>0.2</tempsDemarage>
+					<tempsArret>0.3</tempsArret>
+					<vitesseCourse>13</vitesseCourse>
+					<vitesseRotation>3.14</vitesseRotation>
+				</velocite>
+
+			</parametres>
+		</robotEnemieSecondaire>	
+	</robots>
+
+
+	<typesElement>
+		<type name="chou" id="1000">
+			<etatInitial value="PAS_CEUILLI" />
+			<etat name="INCONU">
+				<valeurIni value="0" />
+			</etat>
+			<etat name="PAS_CEUILLI">
+				<valeurIni value="15" />
+			</etat>
+			<etat name="CEUILLI">
+				<valeurIni value="15" />
+			</etat>
+			<etat name="VENDU">
+				<valeurIni value="0" />
+			</etat>
+		</type>
+	</typesElement>
+	
+	
+	<actions>
+		<action name="ceuillirChou" ref="3" desc="Rien du tout, m'en fout"
+			duree="8" />
+		<action name="vendreChoux" ref="4" desc="Vend des choux" duree="15" />
+	</actions>
 
 
 </MapDatas>
