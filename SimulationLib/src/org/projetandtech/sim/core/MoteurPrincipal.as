@@ -1,30 +1,37 @@
 package org.projetandtech.sim.core
 {
+	import flash.utils.Timer;
+	
+	import org.hamcrest.core.throws;
+	import org.projetandtech.sim.core.map.Map;
+	import org.projetandtech.sim.core.map.items.TypeItem;
+	import org.projetandtech.sim.core.tools.Out;
+
 	public class MoteurPrincipal
 	{ 
 		
 		private static var _instance:MoteurPrincipal;
 		
+		[Bindable]
+		public var sim:Simulation;///////////////////XXX
+		[Bindable]
+		public var gameTimer:Timer;
+
 		
-		private var _mode:MoteurMode;
-		private var _map:Map;
+		/*
+			TODO:
+			Reflection sur la position des robots, 
+			notamment a cause de la possibilité d'une simulation multiple.
+		*/
 		
-		private var _robotAlliePrincipal:Robot;
-		private var _robotAllieSecondaire:Robot;
-		private var _robotEnnemiPrincipal:Robot;
-		private var _robotEnnemiSecondaire:Robot;
+
 		
-		public function MoteurPrincipal(SINGLETON_USE_getInstance:SingletonClass)
+		public function MoteurPrincipal(SINGLETON_CLASS_PLEASE_USE_getInstance:SingletonClass)
 		{
-			_mode = new MoteurMode();
-			_map = new Map();
+			sim = new Simulation();
+			gameTimer = new Timer(0.2,0);
+			trace("a");
 			
-			
-			_robotAlliePrincipal = new Robot();
-			_robotAllieSecondaire = new Robot();
-			_robotEnnemiPrincipal = new Robot();
-			_robotEnnemiSecondaire = new Robot();
-			new XMLSerialLoader("ressources/infos.xml");
 		}
 		
 		public static function getInstance():MoteurPrincipal{
@@ -34,17 +41,13 @@ package org.projetandtech.sim.core
 			return _instance;
 		}
 		
-		public function load(datas:XMLList):void{
-			for(var elem:* in datas){
-				trace('aa');
-			}
+		
+		public function start():void{
 		}
 		
-		
-		public function save():XMLList{
-			
-			return null;
+		public function stop(reason:int):void{
 		}
+
 	}
 	
 

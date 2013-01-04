@@ -24,9 +24,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>[source path] styles</name>
+			<name>[source path] ressources</name>
 			<type>2</type>
-			<locationURI>DOCUMENTS/SimulationLib/styles</locationURI>
+			<locationURI>DOCUMENTS/SimulationLib/ressources</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

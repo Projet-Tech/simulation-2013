@@ -23,6 +23,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>[source path] ressources</name>
+			<type>2</type>
+			<locationURI>DOCUMENTS/SimulationLib/ressources</locationURI>
+		</link>
+		<link>
 			<name>[source path] styles</name>
 			<type>2</type>
 			<locationURI>DOCUMENTS/SimulationLib/styles</locationURI>

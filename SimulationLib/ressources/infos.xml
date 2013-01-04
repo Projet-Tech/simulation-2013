@@ -1,30 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MapDatas file_version="0.1">
-	<map image="assets/Aire_de_jeu_0" dimesionX="2000" dimensionY="3000">
-	
-	
-		<elements>
-			<element type="chou" id="1101">
-				<position x="120" y="2200" />
-				<etatInitial value="PAS_CEUILLI" />
-			</element>
-			<element type="chou" id="1102">
-				<position x="120" y="1200" />
-				<etatInitial value="PAS_CEUILLI" />
-			</element>
-		</elements>
 
 
-		<PointsPassage>
-			<PointPassage x="10" y="20" />
-			<PointPassage x="800" y="20" />
-			<PointPassage x="1300" y="20" />
-		</PointsPassage>
 
 
-		<PointsAction>
-			<PointAction id="5000" x="120" y="2000" o="2.364536"
-				actionName="prendreSalade">
+
+
+	<map imagePath="file:///C:/Users/Jean-Mi/Documents/GitHub/simulation-2013/SimulationLib/assets/Aire_de_jeu_0.png" 
+	dimensionX="3000" dimensionY="2000" origineX="48" origineY="55" aire_img_largeur="717" aire_img_hauteur="476"
+	image_largeur="800" image_hauteur="600">
+		<items>
+			<item type="verre" id="1101" x="900" y="1450" etatInitial="PRESENT" />
+			<item type="verre" id="1102" x="1200" y="1450" etatInitial="PRESENT" />
+			<item type="verre" id="1103" x="2100" y="1450" etatInitial="PRESENT" />
+			<item type="verre" id="1104" x="1800" y="1450" etatInitial="PRESENT" />
+			<item type="verre" id="1105" x="1050" y="1200" etatInitial="PRESENT" />
+			<item type="verre" id="1106" x="1350)" y="1200" etatInitial="PRESENT" />
+			<item type="verre" id="1107" x="1950" y="1200" etatInitial="PRESENT" />
+			<item type="verre" id="1108" x="1650" y="1200" etatInitial="PRESENT" />
+			<item type="verre" id="1109" x="900" y="950" etatInitial="PRESENT" />
+			<item type="verre" id="1110" x="1200" y="950" etatInitial="PRESENT" />
+			<item type="verre" id="1111" x="2100" y="950" etatInitial="PRESENT" />
+			<item type="verre" id="1112" x="1800" y="950" etatInitial="PRESENT" />
+		</items>
+
+
+		<points_passage>
+			<point_passage id="0101" x="0" y="0" />
+			<point_passage id="0102" x="800" y="20" />
+			<point_passage id="0103" x="3000" y="2000" />
+		</points_passage>
+
+
+		<points_action>
+			<point_action id="5000" x="120" y="2000" o="2.364536"
+				action_name="prendreSalade">
 				<elements>
 					<element ref="1101" />
 					<element ref="1102" />
@@ -32,10 +42,10 @@
 				<fonction>
 					<action ref="ceuillirChou">
 						<reussi>
-							<changerTousEtats nouvelEtat="CEUILLI" />
+							<changer_tous_etats nouvelEtat="CEUILLI" />
 						</reussi>
 						<echec>
-							<changerTousEtats nouvelEtat="INCONU" />
+							<changer_tous_etats nouvelEtat="INCONU" />
 						</echec>
 					</action>
 
@@ -43,121 +53,93 @@
 						<!-- Chais pas, on fait un truc -->
 					</condition>
 				</fonction>
-			</PointAction>
-		</PointsAction>
+			</point_action>
+		</points_action>
 
 
-		<zonesAction>
+		<zones_action>
 
-			<zoneAction actionID="3">
-				<diffDefaut value="-0.1" />
+			<zone_action id="7000" action_name="ceuillirChou" x="21" y="123">
+				<diff_init value="-0.1" />
 				<elements>
 					<element ref="1101" diff="-0.1" />
 					<element ref="1102" diff="+0.1" />
 				</elements>
-				<forme x="21" y="123">
-					<rectangle width="12" height="123" />
-				</forme>
-			</zoneAction>
-		</zonesAction>
+				<forme type="rectangle" width="12" height="123" />
+			</zone_action>
+		</zones_action>
 
 
 		<obstacles>
-			<obstacle>
-				<dureeIni>15</dureeIni>
-				<forme x="21" y="123">
-					<rond rayon="12" />
-				</forme>
+			<obstacle id="10001" x="1500" y="0">
+				<!-- <forme type="rond" rayon="12"/> -->
+				<forme type="rond" rayon="500"/>
 			</obstacle>
-
 		</obstacles>
+		
+		
+		
+		<robots>
+			<robot_aliee_principal>
+				<position_init x="120" y="11" o="1.1415" />
+				<forme type="rond" rayon="12" />
+				<velocite temps_demarage="0.2" temps_arret="0.3" vitesse_course="13" vitesse_rotation ="3.14"/>
+			</robot_aliee_principal>
+			
+			<robot_aliee_secondaire>
+				<position_init x="120" y="11" o="1.1415" />
+				<forme type="rond" rayon="12" />
+				<velocite temps_demarage="0.2" temps_arret="0.3" vitesse_course="13" vitesse_rotation ="3.14"/>
+			</robot_aliee_secondaire>
+			
+			<robot_enemie_principal>
+				<position_init x="120" y="11" o="1.1415" />
+				<forme type="rond" rayon="12" />
+				<velocite temps_demarage="0.2" temps_arret="0.3" vitesse_course="13" vitesse_rotation ="3.14"/>
+			</robot_enemie_principal>
+			
+			<robot_enemie_secondaire>
+				<position_init x="120" y="11" o="1.1415" />
+				<forme type="rond" rayon="12" />
+				<velocite temps_demarage="0.2" temps_arret="0.3" vitesse_course="13" vitesse_rotation ="3.14"/>
+			</robot_enemie_secondaire>	
+		</robots>
+		
 	</map>
 	
 	
-	<robots>
-		<robotAlieePrincipal>
-			<positionIni x="120" y="11" o="1.1415" />
-			<forme>
-				<rond rayon="12" />
-			</forme>
-			<parametres>
-				<velocite>
-					<tempsDemarage>0.2</tempsDemarage>
-					<tempsArret>0.3</tempsArret>
-					<vitesseCourse>13</vitesseCourse>
-					<vitesseRotation>3.14</vitesseRotation>
-				</velocite>
-
-			</parametres>
-		</robotAlieePrincipal>
-		
-		<robotAlieeSecondaire>
-			<positionIni x="120" y="11" o="1.1415" />
-			<forme>
-				<rond rayon="12" />
-			</forme>
-			<parametres>
-				<velocite>
-					<tempsDemarage>0.2</tempsDemarage>
-					<tempsArret>0.3</tempsArret>
-					<vitesseCourse>13</vitesseCourse>
-					<vitesseRotation>3.14</vitesseRotation>
-				</velocite>
-
-			</parametres>
-		</robotAlieeSecondaire>
-		
-		<robotEnemiePrincipal>
-			<positionIni x="120" y="11" o="1.1415" />
-			<forme>
-				<rond rayon="12" />
-			</forme>
-			<parametres>
-				<velocite>
-					<tempsDemarage>0.2</tempsDemarage>
-					<tempsArret>0.3</tempsArret>
-					<vitesseCourse>13</vitesseCourse>
-					<vitesseRotation>3.14</vitesseRotation>
-				</velocite>
-
-			</parametres>
-		</robotEnemiePrincipal>
-		
-		<robotEnemieSecondaire>
-			<positionIni x="120" y="11" o="1.1415" />
-			<forme>
-				<rond rayon="12" />
-			</forme>
-			<parametres>
-				<velocite>
-					<tempsDemarage>0.2</tempsDemarage>
-					<tempsArret>0.3</tempsArret>
-					<vitesseCourse>13</vitesseCourse>
-					<vitesseRotation>3.14</vitesseRotation>
-				</velocite>
-
-			</parametres>
-		</robotEnemieSecondaire>	
-	</robots>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
-	<typesElement>
-		<type name="chou" id="1000">
-			<etatInitial value="PAS_CEUILLI" />
-			<etat name="INCONU">
-				<valeurIni value="0" />
-			</etat>
-			<etat name="PAS_CEUILLI">
-				<valeurIni value="15" />
-			</etat>
-			<etat name="CEUILLI">
-				<valeurIni value="15" />
-			</etat>
-			<etat name="VENDU">
-				<valeurIni value="0" />
-			</etat>
+
+
+
+
+
+
+
+
+	<types_item>
+		<type name="verre" id="1000">
+			<etat name="PRESENT" isEtatInitial="true" valeurIni="0"/>
+			<etat name="ABSENT" valeurIni="15" />
+			<etat name="RAMASSE" valeurIni="15" />
+			<etat name="POSE" valeurIni="0" />
+			<etat name="ADVERSAIRE" valeurIni="0" />
 		</type>
-	</typesElement>
+	</types_item>
 	
 	
 	<actions>
@@ -165,6 +147,10 @@
 			duree="8" />
 		<action name="vendreChoux" ref="4" desc="Vend des choux" duree="15" />
 	</actions>
+
+
+
+
 
 
 </MapDatas>

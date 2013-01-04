@@ -6,22 +6,111 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
+			import mx.events.ResizeEvent;
 			
 			import org.projetandtech.sim.core.MoteurPrincipal;
+			import org.projetandtech.sim.core.tools.SocketConnection;
+			
+			protected var main:MoteurPrincipal;
+			protected var mapView:MapView;
+			
 			
 			protected function initializeHandler(event:FlexEvent):void
 			{
-				// TODO Auto-generated method stub
-				MoteurPrincipal.getInstance();
+				
+				// CONNECTION
+				
+				var cf:ConnectFrame = new ConnectFrame();
+				addElement(cf);
+				main = MoteurPrincipal.getInstance();
+				
+				var connection:SocketConnection = SocketConnection.getInstance();
+				
+				connection.addEventListener(Event.CONNECT,connectionConnected);
+				connection.addEventListener(Event.CLOSE,connectionClosed);
+				
+				
+				mapRefGroup.addEventListener(ResizeEvent.RESIZE,mapResize);
+				mapView = new MapView(main.sim.map);
+				
+				mapRefGroup.addElement(mapView);
+				
 			}
 			
+			protected function mapResize(e:ResizeEvent):void{
+				trace(mapRefGroup.getLayoutBoundsX(), mapRefGroup.transformY,
+					mapRefGroup.width,mapRefGroup.height);
+				mapView.resize(mapRefGroup.transformX, mapRefGroup.transformY,
+							   mapRefGroup.width,mapRefGroup.height);
+			}
+			
+			protected function showConnectionPanel():void{
+				
+			}
+			
+			
+			protected function connectionConnected(e:Event):void{
+				// TODO:
+				// Passage ecran map
+			}
+			
+			
+			protected function connectionClosed(e:Event):void{
+				// TODO:
+				// Message d'alerte
+			}
 		]]>
 	</fx:Script>
+	
+	
+	<!-- Fond d'ecran -->
+	<s:Rect  width="100%" height="100%">
+		<s:fill>
+			<s:LinearGradient rotation="60">
+				<s:entries>
+					<s:GradientEntry color="0x000000" ratio="0.00" alpha="1"/>
+					<s:GradientEntry color="0x000066" ratio="1" alpha="1"/>
+				</s:entries>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	
+	
+	<!-- Contenu -->
+	<s:HGroup width="100%" height="100%" gap="10">
+		
+		<s:VGroup width="100%" height="100%" gap="10" >
+			
+			<ui:LogPanel width="100%" />
+			
+
+			<s:HGroup width="100%" height="100%">
+				
+				
+				<!--
+				<ui:ParcoursPanel height="100%"/>
+				<s:VGroup width="100%" height="100%" gap="0">
+					
+					<ui:GamePanel width="100%" height="100%" />
+					<ui:TimeLinePanel width="100%"/>
+				</s:VGroup>
+				-->
+				
+				<s:VGroup width="100%" height="100%" gap="0">
+					<s:Group id="mapRefGroup" width="100%" height="100%" />
+					<s:Group id="timeLineRefGroup" width="100%"  height="100"/>
+				</s:VGroup>
+			</s:HGroup>
+			
+		</s:VGroup>
+		
+		<!--
+		<ui:ParametersPanel height="100%" >
+		</ui:ParametersPanel>
+		-->
+	</s:HGroup>
 	<fx:Declarations>
 		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
 	</fx:Declarations>
-
-	
-	<ui:MapGUI width="100%" height="100%"/>
 
 </s:Group>

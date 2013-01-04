@@ -1,4 +1,4 @@
-/* CSS file */
+ CSS file 
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace ParcoursPanelComponents "ParcoursPanelComponents.*";
@@ -13,9 +13,10 @@
 	fontFamily: gothicCentury;
 	fontWeight: bold;
 }
-
+/*
 global
 {
+	chromeColor:#000000;
 	fontFamily: gothicCentury;
 	color: #FFFFFF;
 }
@@ -97,3 +98,4 @@ ParcoursPanelComponents1|ParcoursPanelListItemRenderer
 	
 	
 }
+*/

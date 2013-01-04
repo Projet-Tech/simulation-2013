@@ -5,11 +5,11 @@
 @namespace ParcoursPanelComponents1 "org.projetandtech.sim.ui.ParcoursPanelComponents.*";
 
 @font-face{
-	src: url("C:\\Windows\\Fonts\\GOTHIC.ttf");
+	src: url("C:\\Windows\\Fonts\\framd.ttf");
 	fontFamily: gothicCentury;
 }
 @font-face{
-	src: url("C:\\Windows\\Fonts\\GOTHICB.TTF");
+	src: url("C:\\Windows\\Fonts\\framd.TTF");
 	fontFamily: gothicCentury;
 	fontWeight: bold;
 }
