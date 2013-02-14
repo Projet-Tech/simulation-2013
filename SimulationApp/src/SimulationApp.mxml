@@ -4,7 +4,8 @@
 			   xmlns:local="*"
 			   applicationDPI="160" xmlns:ui="org.projetandtech.sim.ui.*" 
 			   backgroundColor="0x000033"
-			   splashScreen="@Embed('logo/minilogo.png')"
+			   splashScreenImage="@Embed(source='ressources/minilogo.png')"
+			   
 			   >
 	
 
