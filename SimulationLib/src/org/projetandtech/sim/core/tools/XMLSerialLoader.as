@@ -1,4 +1,4 @@
-package org.projetandtech.sim.core
+package org.projetandtech.sim.core.tools
 {
 	import flash.display.Loader;
 	import flash.events.Event;
@@ -6,7 +6,7 @@ package org.projetandtech.sim.core
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
-	import org.projetandtech.sim.core.tools.Out;
+	import org.projetandtech.sim.core.MoteurPrincipal;
 
 	/**
 	 * 

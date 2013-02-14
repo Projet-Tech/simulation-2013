@@ -9,19 +9,20 @@
 			import mx.events.ResizeEvent;
 			
 			import org.projetandtech.sim.core.MoteurPrincipal;
-			import org.projetandtech.sim.core.tools.SocketConnection;
+			import org.projetandtech.sim.core.comm.SocketConnection;
+			import org.projetandtech.sim.core.map.Map;
 			
 			protected var main:MoteurPrincipal;
 			protected var mapView:MapView;
 			
+			[Bindable]
+			public var map:Map;
 			
 			protected function initializeHandler(event:FlexEvent):void
 			{
 				
 				// CONNECTION
 				
-				var cf:ConnectFrame = new ConnectFrame();
-				addElement(cf);
 				main = MoteurPrincipal.getInstance();
 				
 				var connection:SocketConnection = SocketConnection.getInstance();
@@ -31,9 +32,12 @@
 				
 				
 				mapRefGroup.addEventListener(ResizeEvent.RESIZE,mapResize);
-				mapView = new MapView(main.sim.map);
+				map = main.currentSim.map;
 				
-				mapRefGroup.addElement(mapView);
+				mapView = new MapView(map);
+				
+				mapRefGroup.addElementAt(mapView,mapRefGroup.numElements);
+				parametersPanel.setParams(main.currentSim.params);
 				
 			}
 			
@@ -52,13 +56,17 @@
 			protected function connectionConnected(e:Event):void{
 				// TODO:
 				// Passage ecran map
+				connectFrame.visible = false;
 			}
+			
 			
 			
 			protected function connectionClosed(e:Event):void{
 				// TODO:
 				// Message d'alerte
+				connectFrame.visible = true;
 			}
+			
 		]]>
 	</fx:Script>
 	
@@ -87,8 +95,9 @@
 			<s:HGroup width="100%" height="100%">
 				
 				
+				
+				<ui:ParcoursPanel height="100%" map="{map}"/>
 				<!--
-				<ui:ParcoursPanel height="100%"/>
 				<s:VGroup width="100%" height="100%" gap="0">
 					
 					<ui:GamePanel width="100%" height="100%" />
@@ -97,20 +106,26 @@
 				-->
 				
 				<s:VGroup width="100%" height="100%" gap="0">
+					<ui:EditModSelector width="100%" height="40"/>
 					<s:Group id="mapRefGroup" width="100%" height="100%" />
-					<s:Group id="timeLineRefGroup" width="100%"  height="100"/>
+					<!--<s:Group id="timeLineRefGroup" width="100%"  height="100"/>-->
 				</s:VGroup>
 			</s:HGroup>
 			
 		</s:VGroup>
 		
-		<!--
-		<ui:ParametersPanel height="100%" >
+		
+		<ui:ParametersPanel id="parametersPanel" height="100%" >
 		</ui:ParametersPanel>
-		-->
+		
 	</s:HGroup>
+	
+	<ui:ConnectFrame  id="connectFrame" width="100%" height="100%"/>
+	
+	
+	
+	
 	<fx:Declarations>
 		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
 	</fx:Declarations>
-
 </s:Group>

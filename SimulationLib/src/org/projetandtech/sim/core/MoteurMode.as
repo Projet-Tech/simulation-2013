@@ -8,8 +8,9 @@ package org.projetandtech.sim.core
 		
 		private var _mode:String; 
 		
-		public function MoteurMode()
+		public function MoteurMode(mode:String = SIMULATION)
 		{
+			_mode = mode;
 		}
 		
 		public function get():String{

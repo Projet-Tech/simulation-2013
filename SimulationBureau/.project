@@ -23,19 +23,15 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>[source path] ressources</name>
-			<type>2</type>
-			<locationURI>DOCUMENTS/SimulationLib/ressources</locationURI>
-		</link>
-		<link>
-			<name>[source path] styles</name>
-			<type>2</type>
-			<locationURI>DOCUMENTS/SimulationLib/styles</locationURI>
-		</link>
-		<link>
 			<name>assets</name>
 			<type>2</type>
 			<location>C:/Users/Jean-Mi/Adobe Flash Builder 4.6/SimulationLib/assets</location>
 		</link>
 	</linkedResources>
+	<variableList>
+		<variable>
+			<name>GIT_SIM_DIRECTORY</name>
+			<value>file:/C:/Users/Jean-Mi/Documents/GitHub/simulation-2013</value>
+		</variable>
+	</variableList>
 </projectDescription>

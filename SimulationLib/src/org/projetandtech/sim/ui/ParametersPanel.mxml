@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 
+		 width.ouvert="300" width.ferme="40"
+		 currentState="ferme"
+		 
+		 styleName="parametresPanel">
+	
+	
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.XMLListCollection;
+			
+			import org.projetandtech.sim.core.Parametres;
+			import org.projetandtech.sim.core.tools.Out;
+			
+			[Bindable]
+			private var collection:XMLListCollection;
+			
+			protected function panelOpener_clickHandler(event:MouseEvent):void
+			{
+				currentState = (currentState == "ouvert") ? "ferme" : "ouvert";
+			}
+			
+			public function setParams(params:Parametres):void{
+				collection = params.paramsCollection;
+				Out.debug("params longueur: "+collection.length);
+			}
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="ouvert"/>
+		<s:State name="ferme"/>
+	</s:states>
+	<!--
+	<s:transitions>
+		<s:Transition fromState="*" toState="*">
+			<s:Resize target="{this}">
+				<s:easer>
+					<s:Power />
+				</s:easer>
+			</s:Resize>
+		</s:Transition>
+	</s:transitions>
+-->
+	
+	
+	
+	<s:HGroup width="{this.width}" height="100%" gap="0">
+		<s:Group width="40" height="100%" click="panelOpener_clickHandler(event)">
+			<s:Rect left="0" right="0" top="0" bottom="0" alpha=".5"> 
+				<s:fill>
+					<s:LinearGradient >
+						<s:entries>
+							<s:GradientEntry color="0x0000FF" alpha="1"/>
+							<s:GradientEntry color="0x0044FF" alpha="1"/>
+						</s:entries>
+					</s:LinearGradient>
+				</s:fill>
+			</s:Rect>
+			<s:VGroup id="rotLabelGroup" 
+					  width="100%" height="100%" 
+					  rotation="0" verticalAlign="middle" horizontalAlign="center">
+				<s:Label text="Variables" rotation="-90"/>
+			</s:VGroup>
+		</s:Group>
+		
+		<s:VGroup width="100%" height="100%" top="4">
+			<s:Label text="Variables" styleName="title" textAlign="right" width="100%" /> 
+			<s:List width="100%" height="100%" contentBackgroundAlpha="0" horizontalScrollPolicy="off" dataProvider="{collection}">
+				<s:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer autoDrawBackground="false" width="100%">
+							<s:states>
+								<s:State name="normal" />
+								<s:State name="hovered" />
+								<s:State name="selected" />
+							</s:states>		
+							
+							<s:HGroup left="5" right="5" top="3" bottom="3" gap="3" width="100%">
+								<s:Group width="50%" height="100%">
+									<s:Rect left="0" right="0" top="0" bottom="0" width="100%" height="100%">
+										<s:fill>
+											<s:SolidColor color="0x0000FF" color.hovered="0x0044FF" color.selected="0x0077FF"/>
+										</s:fill>
+									</s:Rect>
+									
+									<s:HGroup left="2" right="2" top="2" bottom="2" verticalAlign="middle" width="100%">
+										<s:Label id="paramLabel" text="{data.@name}" top="5" bottom="5" left="5" right="5"  width="100%"/>
+									</s:HGroup>
+									
+								</s:Group>
+								<s:Group width="50%" height="100%">
+									<s:Rect left="0" right="0" top="0" bottom="0" width="100%" height="100%">
+										<s:fill>
+											<s:SolidColor color="0x0000FF" color.hovered="0x0044FF" color.selected="0x0077FF"/>
+										</s:fill>
+									</s:Rect>
+									<s:HGroup  left="2" right="2" top="2" bottom="2"  verticalAlign="middle" width="100%">
+										<s:Label y="20" id="valueLable" text="{data.@valeur}" top="5" bottom="5" left="5" right="5" width="100%"/>
+									</s:HGroup>
+								</s:Group>
+
+							</s:HGroup>
+							
+						</s:ItemRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+				
+			</s:List>
+		</s:VGroup>
+	</s:HGroup>
+	
+</s:Group>

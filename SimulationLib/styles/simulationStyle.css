@@ -1,24 +1,27 @@
- CSS file 
+/* CSS file */
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace ParcoursPanelComponents "ParcoursPanelComponents.*";
 @namespace ParcoursPanelComponents1 "org.projetandtech.sim.ui.ParcoursPanelComponents.*";
+@namespace ui "org.projetandtech.sim.ui.*";
 
 @font-face{
 	src: url("C:\\Windows\\Fonts\\framd.ttf");
 	fontFamily: gothicCentury;
+	embed-as-cff: false;
 }
 @font-face{
 	src: url("C:\\Windows\\Fonts\\framd.TTF");
 	fontFamily: gothicCentury;
 	fontWeight: bold;
+	embed-as-cff: false;
 }
-/*
 global
 {
-	chromeColor:#000000;
 	fontFamily: gothicCentury;
 	color: #FFFFFF;
+	backgroundAlpha: #000000;
+	contentBackgroundAlpha: #000000;
 }
 
 s|Label
@@ -32,6 +35,13 @@ s|TextArea
 	fontSize: 15; 
 	contentBackgroundAlpha:0.1;
 	skinClass:ClassReference("spark.skins.spark.TextAreaSkin")
+}
+
+s|Form
+{
+	backgroundColor: #000000
+		chromeColor: #330000;
+	color: #000033;
 }
 s|Label.title
 {
@@ -98,4 +108,8 @@ ParcoursPanelComponents1|ParcoursPanelListItemRenderer
 	
 	
 }
-*/
+
+ui|ConnectFrame
+{
+	chromeColor: #000033;
+}

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:List xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		initialize="list_initializeHandler(event)"
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300"
+		 contentBackgroundAlpha="0" horizontalScrollPolicy="off"
+		 itemRendererFunction="itemRendererSelector" xmlns:parcours="org.projetandtech.sim.core.parcours.*"
+		 lineHeight="2"
+		 
+		 >
+<fx:Script>
+	<![CDATA[
+		import mx.collections.ArrayCollection;
+		import mx.events.PropertyChangeEvent;
+		
+		import org.projetandtech.sim.core.map.Map;
+		import org.projetandtech.sim.core.parcours.Parcours;
+		import org.projetandtech.sim.core.parcours.ParcoursAction;
+		import org.projetandtech.sim.core.tools.Out;
+		
+		[Bindable]
+		public var map:Map;
+		
+		[Bindable]
+		protected var parcours:Parcours = new Parcours();
+		
+		[Bindable]
+		protected var actions:ArrayCollection = new ArrayCollection();
+		
+		import mx.events.FlexEvent;
+		protected function list_initializeHandler(event:FlexEvent):void
+		{
+			addEventListener(PropertyChangeEvent.PROPERTY_CHANGE,onChange);
+			addEventListener(MouseEvent.CLICK,onMouseClick);
+			dataProvider = actions;
+			
+		}
+		protected function onMouseClick(evt:MouseEvent):void{
+			try{
+				trace(evt.target.id == "add_goto");
+				switch(evt.target.id)
+				{
+					case "add_goto":
+						actions.addItemAt(new ParcoursActionGoTo(),this.selectedIndex+1);
+						this.selectedIndex = this.selectedIndex+1;
+						break;
+					case "add_rotate":
+						actions.addItemAt(new ParcoursActionRotate(),this.selectedIndex+1);
+						this.selectedIndex = this.selectedIndex+1;
+						break;
+					case "add_wait":
+						actions.addItemAt(new ParcoursActionWait(),this.selectedIndex+1);
+						this.selectedIndex = this.selectedIndex+1;
+						break;
+					case "add_delete":
+						if(this.selectedIndex != 0){
+							var index:int = this.selectedIndex;
+							actions.removeItemAt(index);
+							this.selectedIndex = index;
+						}
+						break;
+					
+				}
+			}catch(e:Error){
+				Out.warning(e);
+			}
+		}
+		
+		
+		protected function onChange(evt:PropertyChangeEvent):void{
+			if(evt.property == "map"){
+				actions = map.tempdebugParcours.actions;
+				dataProvider = actions;
+			}
+		}
+		
+		
+		
+	
+		
+		
+		
+	]]>
+</fx:Script>
+	
+	
+	
+	
+	<fx:Script>
+		<![CDATA[
+			import org.projetandtech.sim.core.parcours.ParcoursActionInit;
+			import org.projetandtech.sim.core.parcours.ParcoursActionWait;
+			import org.projetandtech.sim.core.parcours.ParcoursActionRotate;
+			import org.projetandtech.sim.core.parcours.ParcoursActionGoTo;
+			public function itemRendererSelector(item:Object):IFactory {
+				
+				try{
+					var action:ParcoursAction = item as ParcoursAction;
+					switch(action.type){
+						case ParcoursActionInit.TYPE:
+							return new ClassFactory(ParcoursPanelInitialItemRenderer);
+							break;
+						case ParcoursActionGoTo.TYPE:
+							return new ClassFactory(ParcoursPanelGoToItemRenderer);
+							break;
+						case ParcoursActionRotate.TYPE:
+							return new ClassFactory(ParcoursPanelRotateItemRenderer);
+							break;
+						case ParcoursActionWait.TYPE:
+							return new ClassFactory(ParcoursPanelWaitItemRenderer);
+							break;
+						
+					}
+					return new ClassFactory(ParcoursPanelListItemRenderer);
+				}
+				catch(e:Error){
+					return new ClassFactory(ParcoursPanelListItemRenderer);
+				}
+				
+				return new ClassFactory(ParcoursPanelListItemRenderer);
+			}
+		]]>
+	</fx:Script>
+	
+</s:List>

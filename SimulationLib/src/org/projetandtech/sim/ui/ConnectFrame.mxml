@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" width="400" height="300"
+		 initialize="init(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import org.projetandtech.sim.core.comm.SocketConnection;
+			import org.projetandtech.sim.core.config.SocketConfig;
+			import org.projetandtech.sim.core.tools.Out;
+			
+			import spark.events.IndexChangeEvent;
+			
+			protected function init(event:FlexEvent):void
+			{
+				ip_tin.text = SocketConfig.address;
+				port_tin.text = SocketConfig.port.toString();
+			}
+			
+			protected function connect():void{
+				Out.debug("connection");
+				var err:Boolean = false;
+				if(ip_tin.text == ""){
+					ip_hlp.text = "Entrez une addresse!";
+					err = true;
+				}
+				
+				if(port_tin.text == ""){
+					port_hlp.text = "Entrez un port!";
+					err = true;
+				}
+				else if(isNaN(parseInt(port_tin.text))){
+					
+					port_hlp.text = "Port non valide!";
+					err = true;
+				}
+				
+				if(err)
+					return;
+				
+				ip_hlp.text = "";
+				port_hlp.text = ""
+				
+				SocketConnection.getInstance().connect(ip_tin.text,parseInt(port_tin.text));
+			}
+			
+			protected function registredIP_changeHandler(event:IndexChangeEvent):void
+			{
+				ip_tin.text = registredIP.selectedItem;
+			}
+			
+			protected function registredIP_doubleClickHandler(event:MouseEvent):void
+			{
+				trace("aa");
+				connect()
+			}
+			
+			
+			protected function skip_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+				this.visible = false;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+	</fx:Declarations>
+	<s:Rect width="100%" height="100%" alpha="1"> 
+		<s:fill>
+			<s:LinearGradient rotation="45">
+				<s:entries>
+					<s:GradientEntry color="{getStyle('chromeColor')}" alpha="1"/>
+					<s:GradientEntry color="{getStyle('chromeColor')}" alpha="0.9"/>
+				</s:entries>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:HGroup>
+		<s:List id="registredIP" change="registredIP_changeHandler(event)" doubleClickEnabled="true" doubleClick="registredIP_doubleClickHandler(event)" >
+			<s:ArrayCollection>
+				<fx:String>192.168.1.210</fx:String>
+				<fx:String>192.168.1.200</fx:String>
+				<fx:String>192.168.0.10</fx:String>
+				<fx:String>192.168.0.210</fx:String>
+				<fx:String>127.0.0.1</fx:String>
+			</s:ArrayCollection>
+		</s:List>
+		<s:Form>
+			<s:FormHeading label="Connection:"/>
+			<s:FormItem label="IP:">
+				<s:TextInput id="ip_tin"/>
+				<s:helpContent>
+					<s:Label id="ip_hlp" />
+				</s:helpContent>
+			</s:FormItem>
+			<s:FormItem label="Port:">
+				<s:TextInput id="port_tin" />
+				<s:helpContent>
+					<s:Label id="port_hlp" />
+				</s:helpContent>
+			</s:FormItem>
+			<s:FormItem>
+				<s:Button label="connect" id="conntect_btn" 
+						   click="connect();"/>
+			</s:FormItem>
+		</s:Form>
+		<s:Button id="skipBtn" label="skip" click="skip_clickHandler(event)"/>
+	</s:HGroup>
+</s:Group>

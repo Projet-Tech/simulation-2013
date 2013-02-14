@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 height.ouvert = "280" height.ferme = "40"
+		 initialize="init(event)"
+		 currentState="ferme"
+		 styleName="logPanel">
+	<fx:Declarations>
+	</fx:Declarations>
+	
+	
+	<fx:Script> 
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import org.projetandtech.sim.core.Commande;
+			import org.projetandtech.sim.core.InterpretteurCommande;
+			import org.projetandtech.sim.core.comm.SocketCommunicateur;
+			import org.projetandtech.sim.core.tools.Out;
+			import org.projetandtech.sim.core.tools.TextAreaOutPrinter;
+			
+			import spark.events.IndexChangeEvent;
+			import spark.events.TextOperationEvent;
+			
+			protected var commandeEnCours:String = "";
+			protected function panelOpener_clickHandler(event:MouseEvent):void
+			{
+				currentState = (currentState == "ouvert") ? "ferme" : "ouvert";
+			}
+			
+			protected function init(event:FlexEvent):void
+			{
+				Out.addPrintCible(new TextAreaOutPrinter(consoleTextArea));
+			}
+			
+			protected function champTI_keyDownHandler(event:KeyboardEvent):void
+			{
+
+				// Envoie quand appui sur entrée
+				if(event.keyCode == Keyboard.ENTER){
+					sendCommande();
+				}
+				
+
+				
+				// Autocomplétion par TAB
+				if(event.keyCode == Keyboard.TAB){
+					Out.debug("Tab");
+					champTI.text = Commande.autocompletion(commandeEnCours);
+					champTI.selectRange(champTI.text.length,champTI.text.length);
+				}else
+				{
+					//commandeEnCours = champTI.text;
+				}
+			}
+			protected function champTI_keyUpHandler(event:KeyboardEvent):void
+			{
+				// Navigation dans l'historique par Haut et Bas
+				var txt:String = "";
+				if(event.keyCode == Keyboard.UP){
+					up();
+				}else if(event.keyCode == Keyboard.DOWN){
+					down();
+				}
+				
+				// Autocomplétion par TAB
+				if(event.keyCode != Keyboard.TAB){
+					//commandeEnCours = champTI.text;
+				}
+			}
+			
+			
+			protected function up():void{   
+				var txt:String = InterpretteurCommande.getPrevCommande();
+				if(txt != ""){
+					champTI.text = txt;
+				}
+				champTI.selectRange(champTI.text.length,champTI.text.length);
+				Out.debug("Up");
+			}
+			
+			
+			protected function down():void{
+				var txt:String = InterpretteurCommande.getNextCommande();
+				if(txt != ""){
+					champTI.text = txt;
+				}
+				champTI.selectRange(champTI.text.length,champTI.text.length);
+				Out.debug("Down");
+			}
+			
+			
+			protected function sendBtn_clickHandler(event:MouseEvent):void
+			{
+				sendCommande();
+			}
+			
+			
+			protected function sendCommande():void{
+				var comm:SocketCommunicateur = new SocketCommunicateur();
+				
+				switch(destinationList.selectedItem)
+				{
+					case "PSoC":
+					{
+						comm.sendPSoC(champTI.text);
+						break;
+					}
+					case "Maia":
+					{
+						comm.sendMaia(champTI.text);
+						break;
+					}
+					case "Simu":
+					{
+						comm.reception(champTI.text);
+						break;
+					}
+					case "Cmd":
+					{
+						InterpretteurCommande.execute(champTI.text);
+						break;
+					}
+					default:
+					{
+						Out.warning(destinationList.selectedItem +" non géré");
+						break;
+					}
+				}
+				
+				champTI.text = "";
+				
+			}
+			
+
+			
+			protected function champTI_keyFocusChangeHandler(event:FocusEvent):void
+			{
+				event.preventDefault();
+			}
+			
+
+			
+			protected function controlesUpDownList_changeHandler(event:IndexChangeEvent):void
+			{
+				
+				if(controlesUpDownList.selectedIndex == 0){        // HAUT
+					up();
+				}else if(controlesUpDownList.selectedIndex == 1){  //  BAS
+					down();
+				}
+				
+				event.preventDefault();
+			}
+			
+			
+			protected function champTI_changeHandler(event:TextOperationEvent):void
+			{
+				commandeEnCours = champTI.text;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="ouvert"/>
+		<s:State name="ferme"/>
+	</s:states>
+	
+	
+	<!--
+	<s:transitions>
+		<s:Transition fromState="*" toState="*">
+			<s:Parallel>
+				<s:Resize targets="{[panelComponents,this]}">
+					<s:easer>
+						<s:Power />
+					</s:easer>
+				</s:Resize>
+				<s:Fade target="{panelComponents}" />
+			</s:Parallel>
+
+		</s:Transition>
+	</s:transitions>
+	-->
+
+	
+	<s:Rect width="100%" height="100%" alpha="1"> 
+		<s:fill>
+			<s:LinearGradient rotation="45">
+				<s:entries>
+					<s:GradientEntry color="{getStyle('chromeColor')}" alpha="0.3"/>
+					<s:GradientEntry color="{getStyle('chromeColor')}" alpha="0.5"/>
+				</s:entries>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	
+
+	
+	<s:VGroup width="100%" height="100%" gap="0">
+		
+		<s:Group id="panelComponents" width="100%" height.ouvert="100%" height.ferme="0" visible.ouvert="true" visible.ferme="false">
+			<s:Label text="Console" styleName="title" textAlign="right" width="100%" top="10" right="30" /> 
+			<s:VGroup width="100%" height="100%" paddingLeft="10" paddingRight="10" >
+				
+				<s:HGroup width="100%" verticalAlign="middle">
+					<s:TextArea width="100%" height="100%" id="consoleTextArea"
+								editable="false"/>
+					<s:List id="controlesUpDownList" width="30" height="100%" requireSelection="false"
+							changing="controlesUpDownList_changeHandler(event)">
+						<mx:ArrayCollection> 
+							<fx:String>^</fx:String> 
+							<fx:String>v</fx:String>
+						</mx:ArrayCollection>
+						<s:layout>
+							<s:VerticalLayout verticalAlign="middle"  requestedRowCount="2" variableRowHeight="false"/>
+						</s:layout>
+					</s:List>
+				</s:HGroup>
+				<s:HGroup width="100%">
+					
+					<s:List id="destinationList" width="250" height="100%" 
+							requireSelection="true">
+						<mx:ArrayCollection> 
+							<fx:String>Cmd</fx:String> 
+							<fx:String>Simu</fx:String> 
+							<fx:String>PSoC</fx:String> 
+							<fx:String>Maia</fx:String>
+						</mx:ArrayCollection>
+						<s:layout>
+							<s:HorizontalLayout/>
+						</s:layout>
+					</s:List>
+					
+					<s:TextInput id="champTI" width="100%" tabEnabled="false" 
+								 keyDown="champTI_keyDownHandler(event)" 
+								 keyUp="champTI_keyUpHandler(event)"
+								 keyFocusChange="champTI_keyFocusChangeHandler(event)"
+								 change="champTI_changeHandler(event)"/>
+					<s:Button id="sendBtn" label="Send" click="sendBtn_clickHandler(event)"/>
+				</s:HGroup>
+			</s:VGroup>
+		</s:Group>
+
+		<s:Group id="panelOpenerGroup" width="100%" height="40" click="panelOpener_clickHandler(event)">
+			<s:Rect left="0" right="0" top="0" bottom="0" alpha="1"> 
+				<s:fill>
+					<s:LinearGradient rotation="270">
+						<s:entries>
+							<s:GradientEntry color="0xFF0000" alpha="1"/>
+							<s:GradientEntry color="0xFF3333" alpha="1"/>
+						</s:entries>
+					</s:LinearGradient>
+				</s:fill>
+			</s:Rect>
+			<s:HGroup width="100%" height="100%" >
+
+				<s:VGroup id="rotLabelGroup" width="100%" height="100%" 
+						  rotation="0" verticalAlign="middle" horizontalAlign="center">
+					<s:Label text="Console"/>
+				</s:VGroup>
+			</s:HGroup>
+
+		</s:Group>
+	</s:VGroup>
+	
+</s:Group>

@@ -9,11 +9,9 @@
     <classEntry path="org.projetandtech.sim.ui.ParcoursPanelComponents.ParcoursPanelListItemRenderer"/>
     <classEntry path="org.projetandtech.sim.ui.ParcoursPanelComponents.ParcoursPanelList"/>
     <classEntry path="org.projetandtech.sim.core.Parametres"/>
-    <classEntry path="org.projetandtech.sim.core.SocketCommunication"/>
-    <classEntry path="org.projetandtech.sim.core.ICommunication"/>
     <classEntry path="org.projetandtech.sim.core.robot.Robot"/>
-    <classEntry path="org.projetandtech.sim.core.VelocityParams"/>
-    <classEntry path="org.projetandtech.sim.core.Forme"/>
+    <classEntry path="org.projetandtech.sim.core.robot.VelocityParams"/>
+    <classEntry path="org.projetandtech.sim.core.tools.Forme"/>
     <classEntry path="org.projetandtech.sim.core.map.Obstacle"/>
     <classEntry path="org.projetandtech.sim.core.map.Map"/>
     <classEntry path="org.projetandtech.sim.core.map.PointOrriente"/>
@@ -22,14 +20,13 @@
     <classEntry path="org.projetandtech.sim.core.parcours.Parcours"/>
     <classEntry path="org.projetandtech.sim.core.map.PointPassage"/>
     <classEntry path="org.projetandtech.sim.core.map.PointAction"/>
-    <classEntry path="org.projetandtech.sim.core.ActionPoint"/>
     <classEntry path="org.projetandtech.sim.core.map.ZoneAction"/>
     <classEntry path="org.projetandtech.sim.core.parcours.ParcoursAction"/>
     <classEntry path="org.projetandtech.sim.core.parcours.ParcoursActionGoTo"/>
     <classEntry path="org.projetandtech.sim.core.parcours.ParcoursActionRotate"/>
     <classEntry path="org.projetandtech.sim.core.parcours.ParcoursActionWait"/>
     <classEntry path="org.projetandtech.sim.ui.MainPanel"/>
-    <classEntry path="org.projetandtech.sim.core.XMLSerialLoader"/>
+    <classEntry path="org.projetandtech.sim.core.tools.XMLSerialLoader"/>
     <classEntry path="org.projetandtech.sim.core.map.items.Item"/>
     <classEntry path="org.projetandtech.sim.core.map.items.EtatItem"/>
     <classEntry path="org.projetandtech.sim.core.map.items.TypeItem"/>
@@ -43,13 +40,27 @@
     <classEntry path="org.projetandtech.sim.ui.MapItemView"/>
     <classEntry path="org.projetandtech.sim.ui.MapComponent"/>
     <classEntry path="org.projetandtech.sim.ui.MapObstacleView"/>
-    <classEntry path="org.projetandtech.sim.core.tools.SocketConnection"/>
+    <classEntry path="org.projetandtech.sim.core.comm.SocketConnection"/>
     <classEntry path="org.projetandtech.sim.core.config.SocketConfig"/>
     <classEntry path="org.projetandtech.sim.ui.ConnectFrame"/>
     <classEntry path="org.projetandtech.sim.core.tools.IOutPrinter"/>
     <classEntry path="org.projetandtech.sim.core.tools.TextAreaOutPrinter"/>
     <classEntry path="org.projetandtech.sim.controleur.MainControleur"/>
     <classEntry path="org.projetandtech.sim.controleur.LogsControleur"/>
+    <classEntry path="org.projetandtech.sim.core.config.SimConfig"/>
+    <classEntry path="org.projetandtech.sim.core.comm.SocketCommunicateur"/>
+    <classEntry path="org.projetandtech.sim.core.comm.SecondCommunicateur"/>
+    <classEntry path="org.projetandtech.sim.ui.ParcoursPanelComponents.ParcoursMap"/>
+    <classEntry path="org.projetandtech.sim.ui.ParcoursPanelComponents.ParcoursAddBarr"/>
+    <classEntry path="org.projetandtech.sim.ui.ElementEditable"/>
+    <classEntry path="org.projetandtech.sim.ui.ParcoursPanelComponents.ParcoursMapPoint"/>
+    <classEntry path="org.projetandtech.sim.core.comm.CommuncationCommand"/>
+    <classEntry path="org.projetandtech.sim.core.InterpretteurCommande"/>
+    <classEntry path="org.projetandtech.sim.core.robot.ActionRobot"/>
+    <classEntry path="org.projetandtech.sim.ui.UIControleur"/>
+    <classEntry path="org.projetandtech.sim.ui.EditModSelector"/>
+    <classEntry path="org.projetandtech.sim.ui.EditionMode"/>
+    <classEntry path="org.projetandtech.sim.core.Commande"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

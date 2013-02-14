@@ -1,4 +1,4 @@
-package org.projetandtech.sim.core
+package org.projetandtech.sim.core.robot
 {
 	public class VelocityParams
 	{
@@ -8,7 +8,7 @@ package org.projetandtech.sim.core
 		private var _vitesseCourse:Number;
 		private var _tempsArret:Number;
 		private var _vitesseArret:Number; //Non géré.
-		
+		private var _vitesseRotation:Number // A IMPLEMENTER
 		
 		public function VelocityParams(tempsDemarage:Number, tempsArret:Number, vitesseDemarage:Number,
 									   vitesseCourse:Number, vitesseArret:Number = 0)

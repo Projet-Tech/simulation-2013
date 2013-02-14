@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300"
+		 initialize="initializeHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import flashx.textLayout.events.ModelChange;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			[Bindable]
+			protected var uiCtrl:UIControleur;
+			
+			protected function initializeHandler(event:FlexEvent):void
+			{
+				uiCtrl = UIControleur.getInstance();	
+			}
+			
+			protected function modList_changeHandler(event:IndexChangeEvent):void
+			{ 
+				var mode:EditionMode = modList.selectedItem as EditionMode;
+				UIControleur.getInstance().setEditionMode(mode.name);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+	</fx:Declarations>
+	
+	
+	<fx:Script>
+		<![CDATA[
+			protected function list_label_function(item:Object):String{
+				var mod:EditionMode = item as EditionMode;
+				
+				return mod.label;
+			}
+		]]>
+	</fx:Script>
+	<s:List id="modList" height="100%" width="100%" labelFunction="list_label_function" change="modList_changeHandler(event)">
+		<s:dataProvider>
+			<s:ArrayCollection source="{uiCtrl.editions_corresp}"/>
+		</s:dataProvider>
+		<s:layout>
+			<s:HorizontalLayout/>
+		</s:layout>
+	</s:List>
+	
+</s:Group>

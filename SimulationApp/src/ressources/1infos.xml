@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MapDatas file_version="0.1">
+
+
+
+
+
+
+	<map
+		imagePath="file:///C:/Users/Jean-Mi/Documents/GitHub/simulation-2013/SimulationLib/assets/Aire_de_jeu_0.png"
+		dimensionX="3000" dimensionY="2000" origineX="36" origineY="43"
+		largeur="735" hauteur="498">
+		<items>
+			<item type="chou" id="1101" x="120" y="2200" etatInitial="PAS_CEUILLI" />
+			<item type="chou" id="1102" x="120" y="1200" etatInitial="PAS_CEUILLI" />
+		</items>
+
+
+		<points_passage>
+			<point_passage id="0101" x="0" y="0" />
+			<point_passage id="0102" x="800" y="20" />
+			<point_passage id="0103" x="3000" y="2000" />
+		</points_passage>
+
+
+		<points_action>
+			<point_action id="5000" x="120" y="2000" o="2.364536"
+				action_name="prendreSalade">
+				<elements>
+					<element ref="1101" />
+					<element ref="1102" />
+				</elements>
+				<fonction>
+					<action ref="ceuillirChou">
+						<reussi>
+							<changer_tous_etats nouvelEtat="CEUILLI" />
+						</reussi>
+						<echec>
+							<changer_tous_etats nouvelEtat="INCONU" />
+						</echec>
+					</action>
+
+					<condition type="etat" sourceRef="1101" param="NON_CEUILLI">
+						<!-- Chais pas, on fait un truc -->
+					</condition>
+				</fonction>
+			</point_action>
+		</points_action>
+
+
+		<zones_action>
+
+			<zone_action id="7000" action_name="ceuillirChou" x="21"
+				y="123">
+				<diff_init value="-0.1" />
+				<elements>
+					<element ref="1101" diff="-0.1" />
+					<element ref="1102" diff="+0.1" />
+				</elements>
+				<forme type="rectangle" width="12" height="123" />
+			</zone_action>
+		</zones_action>
+
+
+		<obstacles>
+			<obstacle id="10001" x="21" y="123" duree="15">
+				<!-- <forme type="rond" rayon="12"/> -->
+				<forme type="rectangle" width="12" height="123" />
+			</obstacle>
+		</obstacles>
+
+
+
+		<robots>
+			<robot_aliee_principal>
+				<position_init x="120" y="11" o="1.1415" />
+				<forme type="rond" rayon="12" />
+				<velocite temps_demarage="0.2" temps_arret="0.3"
+					vitesse_course="13" vitesse_rotation="3.14" />
+			</robot_aliee_principal>
+
+			<robot_aliee_secondaire>
+				<position_init x="120" y="11" o="1.1415" />
+				<forme type="rond" rayon="12" />
+				<velocite temps_demarage="0.2" temps_arret="0.3"
+					vitesse_course="13" vitesse_rotation="3.14" />
+			</robot_aliee_secondaire>
+
+			<robot_enemie_principal>
+				<position_init x="120" y="11" o="1.1415" />
+				<forme type="rond" rayon="12" />
+				<velocite temps_demarage="0.2" temps_arret="0.3"
+					vitesse_course="13" vitesse_rotation="3.14" />
+			</robot_enemie_principal>
+
+			<robot_enemie_secondaire>
+				<position_init x="120" y="11" o="1.1415" />
+				<forme type="rond" rayon="12" />
+				<velocite temps_demarage="0.2" temps_arret="0.3"
+					vitesse_course="13" vitesse_rotation="3.14" />
+			</robot_enemie_secondaire>
+		</robots>
+
+	</map>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<types_item>
+		<type name="chou" id="1000">
+			<etat name="INCONU" valeurIni="0" />
+			<etat name="PAS_CEUILLI" isEtatInitial="true" valeurIni="15" />
+			<etat name="CEUILLI" valeurIni="15" />
+			<etat name="VENDU" valeurIni="0" />
+		</type>
+	</types_item>
+
+
+	<actions>
+		<action name="ceuillirChou" ref="3" desc="Rien du tout, m'en fout"
+			duree="8" />
+		<action name="vendreChoux" ref="4" desc="Vend des choux" duree="15" />
+	</actions>
+
+
+
+
+
+
+</MapDatas>

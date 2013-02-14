@@ -6,9 +6,11 @@
 
 
 
-	<map imagePath="file:///C:/Users/Jean-Mi/Documents/GitHub/simulation-2013/SimulationLib/assets/Aire_de_jeu_0.png" 
-	dimensionX="3000" dimensionY="2000" origineX="48" origineY="55" aire_img_largeur="717" aire_img_hauteur="476"
-	image_largeur="800" image_hauteur="600">
+	<map
+		imagePath="file:///C:/Users/Jean-Mi/Documents/GitHub/simulation-2013/SimulationLib/assets/Aire_de_jeu_0.png"
+		dimensionX="3000" dimensionY="2000" origineX="48" origineY="55"
+		aire_img_largeur="717" aire_img_hauteur="476" image_largeur="800"
+		image_hauteur="600">
 		<items>
 			<item type="verre" id="1101" x="900" y="1450" etatInitial="PRESENT" />
 			<item type="verre" id="1102" x="1200" y="1450" etatInitial="PRESENT" />
@@ -59,7 +61,8 @@
 
 		<zones_action>
 
-			<zone_action id="7000" action_name="ceuillirChou" x="21" y="123">
+			<zone_action id="7000" action_name="ceuillirChou" x="21"
+				y="123">
 				<diff_init value="-0.1" />
 				<elements>
 					<element ref="1101" diff="-0.1" />
@@ -73,54 +76,58 @@
 		<obstacles>
 			<obstacle id="10001" x="1500" y="0">
 				<!-- <forme type="rond" rayon="12"/> -->
-				<forme type="rond" rayon="500"/>
+				<forme type="rond" rayon="500" />
 			</obstacle>
 		</obstacles>
-		
-		
-		
+
+
+
 		<robots>
 			<robot_aliee_principal>
-				<position_init x="120" y="11" o="1.1415" />
-				<forme type="rond" rayon="12" />
-				<velocite temps_demarage="0.2" temps_arret="0.3" vitesse_course="13" vitesse_rotation ="3.14"/>
+				<position_init x="200" y="1200" o="2" />
+				<forme type="rectangle" width="250" height="250" />
+				<velocite temps_demarage="0.2" temps_arret="0.3"
+					vitesse_course="13" vitesse_rotation="3.14" />
 			</robot_aliee_principal>
-			
+
 			<robot_aliee_secondaire>
-				<position_init x="120" y="11" o="1.1415" />
-				<forme type="rond" rayon="12" />
-				<velocite temps_demarage="0.2" temps_arret="0.3" vitesse_course="13" vitesse_rotation ="3.14"/>
+				<position_init x="120" y="200" o="1.8" />
+				<forme type="rond" rayon="120" />
+				<velocite temps_demarage="0.2" temps_arret="0.3"
+					vitesse_course="13" vitesse_rotation="3.14" />
 			</robot_aliee_secondaire>
-			
+
 			<robot_enemie_principal>
-				<position_init x="120" y="11" o="1.1415" />
-				<forme type="rond" rayon="12" />
-				<velocite temps_demarage="0.2" temps_arret="0.3" vitesse_course="13" vitesse_rotation ="3.14"/>
+				<position_init x="2800" y="1000" o="4" />
+				<forme type="rectangle" width="200" height="200" />
+				<velocite temps_demarage="0.2" temps_arret="0.3"
+					vitesse_course="13" vitesse_rotation="3.14" />
 			</robot_enemie_principal>
-			
+
 			<robot_enemie_secondaire>
-				<position_init x="120" y="11" o="1.1415" />
-				<forme type="rond" rayon="12" />
-				<velocite temps_demarage="0.2" temps_arret="0.3" vitesse_course="13" vitesse_rotation ="3.14"/>
-			</robot_enemie_secondaire>	
+				<position_init x="2800" y="200" o="10.11" />
+				<forme type="rectangle" width="80" height="100" />
+				<velocite temps_demarage="0.2" temps_arret="0.3"
+					vitesse_course="13" vitesse_rotation="3.14" />
+			</robot_enemie_secondaire>
 		</robots>
-		
+
 	</map>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -133,15 +140,15 @@
 
 	<types_item>
 		<type name="verre" id="1000">
-			<etat name="PRESENT" isEtatInitial="true" valeurIni="0"/>
+			<etat name="PRESENT" isEtatInitial="true" valeurIni="0" />
 			<etat name="ABSENT" valeurIni="15" />
 			<etat name="RAMASSE" valeurIni="15" />
 			<etat name="POSE" valeurIni="0" />
 			<etat name="ADVERSAIRE" valeurIni="0" />
 		</type>
 	</types_item>
-	
-	
+
+
 	<actions>
 		<action name="ceuillirChou" ref="3" desc="Rien du tout, m'en fout"
 			duree="8" />

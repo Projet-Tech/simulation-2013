@@ -1,10 +1,9 @@
-package org.projetandtech.sim.core
+package org.projetandtech.sim.core.tools
 {
-	import org.projetandtech.sim.core.tools.Out;
 
 	public class Forme
 	{
-		public static const FORME_RECTANGLE:String = "BOT_FORME_CARRE";
+		public static const FORME_RECTANGLE:String = "BOT_FORME_RECTANGLE";
 		public static const FORME_CERCLE:String = "BOT_FORME_ROND";
 		
 		private var _forme:String;

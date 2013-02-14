@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				width="100%" 
+				height="50"
+				height.selected="80"
+				contentBackgroundAlpha="0"
+				autoDrawBackground="false" xmlns:ParcoursPanelComponents="org.projetandtech.sim.ui.ParcoursPanelComponents.*"
+				cacheAsBitmap="true">
+	<fx:Script>
+		<![CDATA[
+			import spark.events.TextOperationEvent;
+			
+			protected function iniX_changeHandler(evt:TextOperationEvent):void
+			{
+				var text:String = evt.target.text;
+				try{
+					var val:int = parseInt(text,10);
+					data.iniX = val;
+				}
+				catch(e:Error){}
+			}
+			
+			protected function iniY_changeHandler(evt:TextOperationEvent):void
+			{
+				var text:String = evt.target.text;
+				try{
+					var val:int = parseInt(text,10);
+					data.iniY = val;
+				}
+				catch(e:Error){}
+			}
+		
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+	</fx:Declarations>
+	
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="hovered" />
+		<s:State name="selected" />
+	</s:states>		
+	
+	
+
+	
+	<s:HGroup left="5" right="5" top="3" bottom="3" gap="3" width="100%">
+		<s:Group width="100%" height="100%">
+			<s:Rect left="0" right="0" top="0" bottom="0" width="100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="0xFFFFFF" 
+								  alpha="0.1" alpha.hovered=".2" alpha.selected=".3"/>
+				</s:fill>
+			</s:Rect>
+			<s:VGroup width="100%" height="100%" verticalAlign="middle">
+				<s:HGroup left="2" right="2" top="2" bottom="2" verticalAlign="middle" width="100%">
+					<s:Label id="paramLabel" text="Init" top="5" bottom="5" left="5" right="5"  width="30%"/>
+					<s:TextInput text="{data.posX}" width="35%" change="iniX_changeHandler(event)"/>
+					<s:TextInput text="{data.posY}" width="35%" change="iniY_changeHandler(event)"/>
+				</s:HGroup>
+				<ParcoursPanelComponents:ParcoursAddBarr includeIn="selected" width="100%" height="30" />
+			</s:VGroup>
+			
+		</s:Group>
+	</s:HGroup>
+	
+</s:ItemRenderer>
